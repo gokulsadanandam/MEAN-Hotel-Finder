@@ -12,7 +12,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/css/register.css">
-
 </head>
 
 <body>
@@ -49,6 +48,11 @@
                             </div>
                             <div class="form-group button">
                                 <button class="btn">Register</button>
+
+                                <% if(message.length){ %>
+                                        <div class="alert"><%=message %></div>
+                                <% } %>
+
                                 <!-- <button class="btn" onclick="submit()">Register</button> -->
                             </div>
                         </div>

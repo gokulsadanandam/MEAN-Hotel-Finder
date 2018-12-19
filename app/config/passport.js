@@ -30,7 +30,7 @@ module.exports = function(passport) {
                         return done(err);
 
                     if (user) {
-                        return done(null, false);
+                        return done(null, false , {message : 'Username Already Taken!'} );
                     } else {
 
                         var newUser = new User();
@@ -69,10 +69,10 @@ module.exports = function(passport) {
                     return done(err);
 
                 if (!user)
-                    return done(null, false); // req.flash is the way to set flashdata using connect-flash
+                    return done(null, false , { message : 'User Not Found!' }); // req.flash is the way to set flashdata using connect-flash
 
                 if (!user.validPassword(password))
-                    return done(null, false); // create the loginMessage and save it to session as flashdata
+                    return done(null, false , {message : 'Incorrect Password!'}); // create the loginMessage and save it to session as flashdata
 
                 return done(null, user);
             });

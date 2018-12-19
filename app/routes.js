@@ -4,11 +4,11 @@ var path = require('path')
 module.exports = (app,hotels,passport)=>{
 
 	app.get('/', function(req, res) {
-        res.render('login.ejs')
+        res.render('login.ejs' , {message : req.flash('error')})
     })
 
 	app.get("/signup", function(req, res) {
-        res.render('signup.ejs')
+        res.render('signup.ejs' , { message : req.flash('error') })
 
     })
 

@@ -4,7 +4,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     cookieParser = require('cookie-parser'),
-    session = require('express-session')
+    session = require('express-session'),
+    flash = require('connect-flash')
 
 mongoose.connect('mongodb://localhost:27017/HotelBooking', function(err, data) {
     console.log("Mongoose Connection Status " + mongoose.connection.readyState)
@@ -18,11 +19,12 @@ let hotels = mongoose.model('hotels',schema)
 
 app.use(bodyparser.urlencoded({
   extended: true
-}));
+}))
+
 app.use(bodyparser.json());
 app.use(bodyparser.raw())
 app.use(bodyparser.text({ type: 'text/html' }))
-
+app.use(flash())
 app.set('view engine', 'ejs');
 app.use(session({
     secret: 'codingisawesome'
