@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Google Font CDN -->
+    <link href="/css/font.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 nav">
+                <nav class="navbar navbar-default">
+                    <strong class="navbar-brand">My App</strong>
+                    <a class="navbar-brand navoptions" href="/">Login</a>
+                    <a class="navbar-brand navoptions" href="/signup">Signup</a>
+                </nav>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-offset-4 col-md-offset-4 col-lg-3">
+                        <form class="form" action="/register" method="post">
+                        <!-- <div class="form"> -->
+                            <h1>Register</h1>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="First Name" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="number" name="number" placeholder="Contact Number" />
+                            </div>
+                            <div class="form-group button">
+                                <button class="btn">Register</button>
+                                <!-- <button class="btn" onclick="submit()">Register</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-offset-5 col-md-offset-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    
+var func  = function(data){
+        document.getElementById("span").style.display = "none"
+        display(data)
+}
+
+
+var myfunc = function(){
+
+        document.getElementById('upload').style.width = "50%"
+        document.getElementById('upload').style.height = "100%"
+        document.getElementById('uploadmain').style.padding = "0px 0px 0px 0px"
+        document.getElementById("span").style.display = "none"
+
+}
+
+var display = function(data){
+     if (data.files && data.files[0]){
+
+    var reader = new FileReader();
+
+            reader.onload = function (e) {
+                if(e.target.result){
+
+                document.getElementById("upload").setAttribute("src",e.target.result)
+                document.getElementById('upload').style.width = "40%"
+                document.getElementById('upload').style.height = "75%"
+                document.getElementById('uploadmain').style.padding = "0px 0px 0px 0px"
+                document.getElementById("span").style.display = "none"
+                }
+            };
+
+            reader.readAsDataURL(data.files[0]);
+
+}
+     }
+
+
+var submit = function(){
+    
+    var http = new XMLHttpRequest();
+     let name = document.getElementById("name").value,
+         lastname = document.getElementById("lastname").value,
+         email = document.getElementById("email").value,
+         password = document.getElementById("password").value
+     
+    let data ="name=" + name +"&lastname=" + lastname + "&email=" + email + "&password=" + password
+
+     http.open("POST", "/register", true);
+     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+     http.send(data);
+
+     http.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        // console.log(http.responseText)
+        image = document.getElementById("upload")
+
+        var http = new XMLHttpRequest();
+        http.open("POST", "/upload", true);
+        http.setRequestHeader("Content-type", "multipart/form-data; boundary=----WebKitFormBoundaryhwmjDa0grilB7B9R");
+        http.send(image);
+    }
+};
+
+
+}
+
+</script>

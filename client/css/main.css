@@ -1,0 +1,54 @@
+html,body{
+	height: 100%;
+	width: 100%;
+	font-family:'Roboto', sans-serif;
+	margin:0px;
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+}
+
+header,section,footer{
+	padding: 5px 0px ;
+}
+
+header{
+	height: 8%
+}
+header{
+	background-color: black;
+	color:white;
+}
+
+header > a > span{
+	float: right;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	color: white;
+}
+.welcome{
+	color: white;
+	display: inline-block;
+	padding: 5px;
+	font-size: 20px
+}
+section{
+	height: 88%;
+	display: flex;
+	align-content: center;
+	max-height: 88%;
+	overflow: auto;
+}
+
+footer{
+	height: 5%;
+	text-align: center;
+	margin:auto;
+}
+
+md-content{
+background-color: white!important
+}

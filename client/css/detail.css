@@ -1,0 +1,12 @@
+.hotel-details{
+	display: flex;
+	flex-flow: row;
+	/*max*/
+}
+
+.hotel-detail-image img{
+	width: 400px;
+	height: 400px;
+	padding: 10px
+
+}

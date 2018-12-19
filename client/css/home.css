@@ -1,0 +1,26 @@
+.home-wrapper{
+	
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	padding: 10px;
+}
+
+.search-button-home{
+	padding: 10px;
+	width: 40%;
+	margin: 10px
+}
+
+.search-button-home > a{
+	text-decoration: none!important;
+	color: black;
+	font-size: 25px;
+}
+
+.button-custom{
+	width: 100%;
+	border-radius: 25px; 
+	background-color: #F26722;
+	color: white
+}

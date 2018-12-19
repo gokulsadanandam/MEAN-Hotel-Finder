@@ -1,0 +1,34 @@
+<div class="hotel-details">
+
+<div class="hotel-detail-image">
+		
+		<img src="/css/image0.jpg">
+
+</div>
+
+<div class="hotel-detail-main">
+	<div class="name">
+		<h2>{{details.name}}</h2>
+	</div>
+	<div class="name">
+		<strong>{{details.address}} <br> {{details.city}} <br> {{details.country}} </strong>
+		
+
+	</div>
+	<span ng-repeat="item in star track by $index">
+		<span class="glyphicon glyphicon-star"></span>
+	</span>
+	
+	<div class="name">
+		<h3>Testimonials</h3>
+	</div>
+	<div class="name">
+		<b>{{details.username}} says <br></b>
+		<b>"{{details.text}}"</b>
+	</div>
+
+
+</div>
+
+
+</div>

@@ -1,0 +1,55 @@
+<div class="search-box">
+    <input type="search" ng-model="query" ng-change="search()" class="form-control" placeholder="Type a city or hotel name ">
+    <i class="fa fa-search"></i>
+</div>
+<div ng-if="!currentpagedata.length" id="h3">
+    <h3>No Search Results</h3>
+</div>
+<div ng-if="currentpagedata.length">
+
+    <div class="wrapper" ng-show="query">
+        <div class="table-holder">         
+         <div ng-repeat = "hotel in currentpagedata track by $index" class="hotel-wrapper" ng-click="details(this)">
+            <div class="card">
+                <div class="hotel-image">
+                <img ng-src="/css/image{{$index%10}}.jpg">
+                </div>
+            <div class="hotel-name">
+                <strong>{{hotel.name}}</strong>
+            </div>
+            <div class="hotel-city">
+                {{hotel.city}}
+            </div>
+            <div class="hotel-address">
+                {{hotel.address}}
+            </div>
+            <div class="hotel-rating">
+                <strong> Rating - {{hotel.rating || 'NA'}}</strong>
+            </div>
+         </div>
+        </div>
+    </div>
+        <div class="button-items">
+            <div class="btn-group" role="group" aria-label="btn" style="float: right;">
+                <div ng-show="getpageslist()">
+                    <button type="button" class="btn btn-default" ng-click="prev()">
+                        < </button> <span ng-repeat="items in buttonlist">
+                            <button type="button" class="btn btn-default" ng-click="goto($index)">{{items}}</button>
+                            </span>
+                            <span id="dot">....</span>
+                            <button type="button" class="btn btn-default" ng-click="goto(itemsinpage.length-1)">{{itemsinpage.length}}</button>
+                            <button ng-click="next()" type="button" class="btn btn-default">
+                                >
+                            </button>
+                </div>
+                <div ng-show="!getpageslist()">
+                    <span ng-repeat="items in itemsinpage">
+                        <button type="button" class="btn btn-default" ng-click="goto($index)">{{$index + 1}}</button>
+                </div>
+            </div>
+            <span class="span-footer">
+            	Current Page {{currentpage + 1}} / {{itemsinpage.length}} 
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+1) npm install to install the dependencies.
+2) node server.js - server runs on port 3000
