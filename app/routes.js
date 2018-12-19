@@ -1,14 +1,18 @@
 var path = require('path')
 
 
-module.exports = (app,hotels,passport)=>{
+module.exports = (app, hotels, passport) => {
 
-	app.get('/', function(req, res) {
-        res.render('login.ejs' , {message : req.flash('error')})
+    app.get('/', function(req, res) {
+        res.render('login.ejs', {
+            message: req.flash('error')
+        })
     })
 
-	app.get("/signup", function(req, res) {
-        res.render('signup.ejs' , { message : req.flash('error') })
+    app.get("/signup", function(req, res) {
+        res.render('signup.ejs', {
+            message: req.flash('error')
+        })
 
     })
 
@@ -29,34 +33,45 @@ module.exports = (app,hotels,passport)=>{
         failureFlash: true
     }))
 
-	app.get('/main', isLoggedIn ,(req,res)=>{
-		res.render('main.ejs', {
-                user: req.user.firstname + " " + req.user.lastname,
-            });
+    app.get('/main', isLoggedIn , (req, res) => {
+        res.render('main.ejs', {
+            user: req.user.firstname + " " + req.user.lastname,
+        });
 
-	})
+    })
 
 
-	app.get('/api/hotels',(req,res)=>{
+    app.get('/api/hotels', (req, res) => {
 
-		hotels.find({} , 'name city address rating ' , (err,docs)=>{
-			res.json(docs)
-		})
-
-	})
-
-    app.get('/api/hoteldata',(req,res)=>{
-        let hotelid = req.url.split("?")[1]
-
-        hotels.findById(hotelid,(err,docs)=>{
+        hotels.find({}, 'name city address rating ', (err, docs) => {
             res.json(docs)
         })
 
     })
 
+    app.get('/api/hoteldata', (req, res) => {
+        let hotelid = req.url.split("?")[1]
+
+        hotels.findById(hotelid, (err, docs) => {
+            res.json(docs)
+        })
+
+    })
+
+    app.get('/auth/google',
+        passport.authenticate('google', {
+            scope: ['profile']
+        }));
+
+    app.get('/auth/googlecallback', passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/main')
+        })
+
 }
 
 function isLoggedIn(req, res, next) {
+    // console.log(req.isAuthenticated())
     if (req.isAuthenticated())
         return next();
     res.redirect('/');

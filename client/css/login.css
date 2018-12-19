@@ -35,3 +35,17 @@ html, body {
 .alert{
      color:red;
 }
+
+i{
+     color: #CC3731
+}
+
+a{
+     text-decoration: none!important;
+     color:#5E5E5E!important;
+}
+
+a:hover{
+     text-decoration: none!important;
+     color: black!important
+}

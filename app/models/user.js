@@ -6,7 +6,8 @@ var userschema = new mongoose.Schema({
     "lastname": String,
     "email": String,
     "password": String,
-    "contact":String
+    "contact":String,
+    "googleid":{type:String,default:null}
 })
 
 

@@ -34,6 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./app/config/passport')(passport);
+require('./app/config/passport-google');
 require('./app/routes.js')(app,hotels,passport);
 
 app.use("/css", express.static(__dirname + "/client/css"))
