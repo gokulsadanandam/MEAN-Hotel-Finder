@@ -43,7 +43,11 @@ module.exports = (app, hotels, passport) => {
 
     app.get('/api/hotels', (req, res) => {
 
-        hotels.find({}, 'name city address rating ', (err, docs) => {
+        hotels.find({}, 'name city address rating ',{
+            sort : {
+                rating : -1
+            }
+        } ,  (err, docs) => {
             res.json(docs)
         })
 

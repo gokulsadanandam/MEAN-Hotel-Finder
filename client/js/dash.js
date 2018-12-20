@@ -1,37 +1,7 @@
-app.service('service', function($http) {
-
-    this.data = []
-
-        this.setcurrentHotel = function(data){
-            this.currenthotelid = data
-        }
-
-        this.getcurrenthoteldetails = async function(){
-            await $http({
-                method:'GET',
-                url:'/api/hoteldata?'+this.currenthotelid,
-                body : {"id" : this.currenthotelid}
-            }).then((response)=>{
-                this.currenthoteldetails = response.data
-            })
-        } 
-
-        
-
-    this.getdata = async function() {
-        await $http({
-            method: 'GET',
-            url: '/api/hotels'
-        }).then((response) => {
-            this.data = response.data
-        })
-    }
-})
-
-
 app.controller('dash', function($scope, service) {
 
     $scope.hotels = service.data
+    console.log($scope.hotels)
     $scope.query = ''
     $scope.itemsperpage = 5
     $scope.currentpage = 0
@@ -40,12 +10,12 @@ app.controller('dash', function($scope, service) {
 
     $scope.pagination = function(number, data) {
         $scope.itemsinpage = []
-        let items = []
-        let index = data.length
-        let startindex = 0
-        let endindex = $scope.itemsperpage
-        let residue = data.slice(index - (index % number), index)
-        let flag = parseInt(data.length / $scope.itemsperpage)
+        let items = [],
+            index = data.length,
+            startindex = 0,
+            endindex = $scope.itemsperpage,
+            residue = data.slice(index - (index % number), index),
+            flag = parseInt(data.length / $scope.itemsperpage)
         while (flag) {
             flag = flag - 1
             $scope.itemsinpage.push(data.slice(startindex, endindex))
@@ -113,7 +83,7 @@ app.controller('dash', function($scope, service) {
         }
     }
 
-    $scope.details = function(data){
+    $scope.details = function(data) {
         service.setcurrentHotel(data.hotel._id)
         window.location.assign("#!/hotel")
     }

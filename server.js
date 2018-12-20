@@ -39,6 +39,7 @@ require('./app/routes.js')(app,hotels,passport);
 
 app.use("/css", express.static(__dirname + "/client/css"))
 app.use("/js", express.static(__dirname + "/client/js"))
+app.use("/service", express.static(__dirname + "/client/service"))
 app.use("/partials", express.static(__dirname + "/client/view/partials"))
 
 app.listen(process.env.PORT || 3000)
