@@ -6,29 +6,37 @@
     <h3>No Search Results</h3>
 </div>
 <div ng-if="currentpagedata.length">
-
     <div class="wrapper" ng-show="query">
-        <div class="table-holder">         
-         <div ng-repeat = "hotel in currentpagedata track by $index" class="hotel-wrapper" ng-click="details(this)">
-            <div class="card">
-                <div class="hotel-image">
-                <img ng-src="/css/image{{$index%10}}.jpg">
+            <div class="hotel-card" ng-repeat = "hotel in currentpagedata track by $index">
+                <div class="hotel-card-image">
+                   <img ng-src="/css/image{{$index%10}}.jpg">
                 </div>
-            <div class="hotel-name">
-                <strong>{{hotel.name}}</strong>
+                <div class="hotel-card-content">
+                        <h3>{{hotel.name}}</h3>
+                            <h5>{{hotel.city}}</h5>
+                            <h5>{{hotel.address}}</h5>
+                        <strong> Rating - {{hotel.rating || 'NA'}}</strong>
+                </div>
+
             </div>
-            <div class="hotel-city">
-                {{hotel.city}}
-            </div>
-            <div class="hotel-address">
-                {{hotel.address}}
-            </div>
-            <div class="hotel-rating">
-                <strong> Rating - {{hotel.rating || 'NA'}}</strong>
-            </div>
-         </div>
+
+       <!--  <div class="table-holder">         
+        <div ng-repeat = "hotel in currentpagedata track by $index" class="hotel-wrapper" ng-click="details(this)">
+           <div class="card">
+               <div class="hotel-image">
+               <img ng-src="/css/image{{$index%10}}.jpg">
+               </div>
+           <div class="hotel-name">
+           </div>
+           <div class="hotel-city">
+           </div>
+           <div class="hotel-address">
+           </div>
+           <div class="hotel-rating">
+           </div>
         </div>
-    </div>
+       </div>
+           </div> -->
         <div class="button-items">
             <div class="btn-group" role="group" aria-label="btn" style="float: right;">
                 <div ng-show="getpageslist()">

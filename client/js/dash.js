@@ -1,7 +1,6 @@
 app.controller('dash', function($scope, service) {
-
+    console.log(service.data)
     $scope.hotels = service.data
-    console.log($scope.hotels)
     $scope.query = ''
     $scope.itemsperpage = 5
     $scope.currentpage = 0
